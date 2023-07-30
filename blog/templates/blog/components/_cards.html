@@ -1,0 +1,35 @@
+
+<a href="{{ article.get_absolute_url }}" style="text-decoration:none;">
+<div class="card mb-3 border-danger">
+    <div class="row g-0 bg-dark rounded">
+        <div class="col-md-4 ">
+
+            {% if article.photo %}
+            <img src="{{ article.photo.url }}" alt="" class="img-fluid rounded-start h-100" >
+            {% else %}
+            <img src="https://basket-03.wb.ru/vol425/part42501/42501548/images/big/1.jpg"
+                 class="img-fluid rounded-start" alt="..." >
+            {% endif %}
+
+        </div>
+        <div class="col-md-8 ">
+            <div class="card-body h-100 bg-dark text-light"
+                 style="display:flex; flex-direction:column; justify-content: space-between;">
+
+                <div>
+                    <h5>{{ article.title }}</h5>
+                    <p>{{ article.content|truncatechars:300 }}</p>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <p><small class="text-light">Дата публикации: {{ article.created_at }} </small></p>
+
+                    <p><small class="text-light">Просмотры: {{ article.views }} </small></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</a>

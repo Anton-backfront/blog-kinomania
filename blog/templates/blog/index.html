@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block main %}
+
+
+<div class="d-flex justify-content-between pt-5">
+
+    <div class="col-3">
+        {% include 'blog/components/_category_nav.html' %}
+    </div>
+
+
+    <div class="col-8">
+        {% for article in articles %}
+        {% include 'blog/components/_cards.html' %}
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock main %}
+

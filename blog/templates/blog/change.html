@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block main %}
+
+<div class="d-flex justify-content-center p-4">
+    <div class="col-6">
+        <div class="card bg-dark border-danger p-4">
+            <h3 class="text-center text-light">{{ title }}</h3>
+            <form action="{% url 'edit_account' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-floating flex-fill mb-4">
+                    {{ chg_form.username }}
+                    <label for="{{ chg_form.username.id_for_label }}" class="form-label">
+                        Логин
+                    </label>
+                </div>
+
+                <div class="form-floating flex-fill mb-4">
+                    {{ chg_form.first_name }}
+                    <label for="{{ chg_form.first_name.id_for_label }}" class="form-label">
+                        Имя пользователя
+                    </label>
+                </div>
+
+                <div class="form-floating flex-fill mb-4">
+                    {{ chg_form.last_name }}
+                    <label for="{{ chg_form.last_name.id_for_label }}" class="form-label">
+                        Фамилия пользователя
+                    </label>
+                </div>
+
+                <div class="form-floating flex-fill mb-4">
+                    {{ chg_form.email }}
+                    <label for="{{ chg_form.email.id_for_label }}" class="form-label">
+                        Почта пользовтаеля
+                    </label>
+                </div>
+
+                <div class="form-floating flex-fill mb-4">
+                    {{ chg_profile.phone_number }}
+                    <label for="{{ chg_profile.phone_number.id_for_label }}" class="form-label">
+                        Номер пользовтаеля
+                    </label>
+                </div>
+
+                <div class="form-floating flex-fill mb-4">
+                    {{ chg_profile.photo }}
+                    <label for="{{ chg_profile.photo.id_for_label }}" class="form-label">
+
+                    </label>
+                </div>
+
+
+                <div class="form-floating flex-fill mb-4">
+                    {{ chg_form.old_password }}
+                    <label for="{{ chg_form.old_password.id_for_label }}" class="form-label">
+                        Старый пароль
+                    </label>
+                </div>
+
+                <div class="form-floating flex-fill mb-4">
+                    {{ chg_form.new_password }}
+                    <label for="{{ chg_form.new_password.id_for_label }}" class="form-label">
+                        Новый пароль
+                    </label>
+                </div>
+
+
+                <div class="form-floating flex-fill mb-4">
+                    {{ chg_form.confirm_password }}
+                    <label for="{{ chg_form.confirm_password.id_for_label }}" class="form-label">
+                        Подтвердить пароль
+                    </label>
+                </div>
+
+
+                <button type="submit" class="btn btn-success">Созранить изменения</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock main %}

@@ -1,0 +1,22 @@
+*{
+    text-decoration: none !important;
+    list-style: none !important;
+}
+
+.block_main{
+  background: url(../images/fonstola.ru_377375.jpg) no-repeat;
+  background-size: cover;
+  min-height: 1000px;
+}
+
+.img-fluid{
+    height: 100% !important;
+    width: 100%;
+}
+
+textarea{
+    margin-top: 10px;
+}
+
+
+

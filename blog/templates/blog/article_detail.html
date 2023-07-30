@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block main %}
+
+<div class="d-flex justify-content-between pt-5">
+
+    <div class="col-9">
+        <div class="card bg-dark text-light border-danger">
+            <div class="card-header d-flex justify-content-between border-danger">
+                <div>
+                    <a class="h4  fs-4 fw-bold navbar-brand" href="">Категоря: {{ article.category }}</a>
+                </div>
+                <div class="d-flex justify-content-between">
+                    {% if article.author == request.user %}
+                    <a href="{% url 'update_article' article.pk %}" class="btn btn-warning mx-1">Изменить</a>
+                    <a href="{% url 'delete' article.pk %}" class="btn btn-danger mx-1">Удалить</a>
+                    {% endif %}
+                    <a href="{% url 'index' %}" class="btn btn-success mx-1">Назад</a>
+                </div>
+            </div>
+
+            <div class="card-body">
+
+                {% if article.video %}
+                <iframe width="100%" height="664" src="{{ article.video }}"
+                        title="ФОРСАЖ 10 💥 Финальный русский трейлер 4K (Озвучка) 💥 Фильм 2023" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                {% else %}
+                <img src="https://basket-03.wb.ru/vol425/part42501/42501548/images/big/1.jpg"
+                     class="img-fluid rounded-start" alt="..." height="100%">
+                {% endif %}
+
+                <div class="d-flex justify-content-between py-4 align-items-center">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <img src="{{ article.author.profile.get_photo }}"
+                             class="rounded-circle" alt="" height="100" width="100">
+                        <a href="{% url 'profile' article.author.pk %}" class="p-2 navbar-brand fs-4 bf-bold">Автор: {{ article.author }}</a>
+                    </div>
+                    <p>{{ article.created_at }}</p>
+                </div>
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.content }}</p>
+
+            </div>
+        </div>
+
+        <div class="card bg-dark text-light border-danger p-3">
+            {% if request.user.is_authenticated %}
+            <form action="{% url 'save_comment' article.pk %}" method="post">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button type="submit" class="btn btn-success rounded">Оставить коментарий</button>
+            </form>
+            {% else %}
+            <h3><a href="{% url 'login' %}">Войдите в Аккаунт</a> что бы оставить комментраий</h3>
+            {% endif %}
+        </div>
+
+        {% for comment in comments %}
+        <div class="card mt-4 p-4 bg-dark text-light">
+            <h4>{{ comment.user.username }}</h4>
+            <p class="small">{{ comment.created_at }}</p>
+            <p>{{ comment.text }}</p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="col-3"></div>
+
+
+</div>
+
+
+{% endblock main %}
+
+
+
+
+
+
+
+
+
